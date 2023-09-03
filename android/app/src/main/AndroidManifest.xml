@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
+   
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
       android:name=".MainApplication"
@@ -9,6 +15,14 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <receiver android:name=".PhoneStateReceiver" android:enabled="true"
+        android:exported="true">
+       <intent-filter android:exported="true">
+            <action android:name="android.intent.action.PHONE_STATE" />
+            <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+       </intent-filter>
+    </receiver>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
